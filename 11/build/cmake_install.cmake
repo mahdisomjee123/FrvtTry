@@ -1,4 +1,4 @@
-# Install script for directory: /home/accurascan/Desktop/frvt/11
+# Install script for directory: /home/mahdi/try2/FrvtTry/11
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/accurascan/Desktop/frvt/11/build/src/testdriver/cmake_install.cmake")
+  include("/home/mahdi/try2/FrvtTry/11/build/src/testdriver/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/accurascan/Desktop/frvt/11/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/mahdi/try2/FrvtTry/11/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

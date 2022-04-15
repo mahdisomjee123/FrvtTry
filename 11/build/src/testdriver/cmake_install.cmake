@@ -1,4 +1,4 @@
-# Install script for directory: /home/accurascan/Desktop/frvt/11/src/testdriver
+# Install script for directory: /home/mahdi/try2/FrvtTry/11/src/testdriver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

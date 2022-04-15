@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -std=c++17 -DNIST_EXTERN_FRVT_STRUCTS_VERSION -DNIST_EXTERN_A
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/accurascan/Desktop/frvt/11/src/testdriver/../include -I/home/accurascan/Desktop/frvt/11/src/testdriver/../../../common/src/include 
+CXX_INCLUDES = -I/home/mahdi/try2/FrvtTry/11/src/testdriver/../include -I/home/mahdi/try2/FrvtTry/11/src/testdriver/../../../common/src/include 
 
