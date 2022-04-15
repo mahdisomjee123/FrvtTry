@@ -1,0 +1,60 @@
+# Accura KYC Android SDK - OCR, Face Match & Liveness Check
+Android KYC SDK - OCR &amp; Face Match <br/><br/>
+
+## 2. Setup Accura Face Match
+* Require `accuraface.license` to implement AccuraFaceMatch SDK in to your app
+
+#### Step 1 : Add following code in Manifest.
+    <manifest>
+        ...
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    </manifest>
+
+#### Step 2 : Open auto capture camera
+    FMCameraScreenCustomization cameraScreenCustomization = new FMCameraScreenCustomization();
+    
+    cameraScreenCustomization.backGroundColor = getResources().getColor(R.color.fm_camera_Background);
+    cameraScreenCustomization.closeIconColor = getResources().getColor(R.color.fm_camera_CloseIcon);
+    cameraScreenCustomization.feedbackBackGroundColor = getResources().getColor(R.color.fm_camera_feedbackBg);
+    cameraScreenCustomization.feedbackTextColor = getResources().getColor(R.color.fm_camera_feedbackText);
+    cameraScreenCustomization.feedbackTextSize = 18;
+    cameraScreenCustomization.feedBackframeMessage = "Frame Your Face";
+    cameraScreenCustomization.feedBackAwayMessage = "Move Phone Away";
+    cameraScreenCustomization.feedBackOpenEyesMessage = "Keep Your Eyes Open";
+    cameraScreenCustomization.feedBackCloserMessage = "Move Phone Closer";
+    cameraScreenCustomization.feedBackCenterMessage = "Move Phone Center";
+    cameraScreenCustomization.feedBackMultipleFaceMessage = "Multiple Face Detected";
+    cameraScreenCustomization.feedBackHeadStraightMessage = "Keep Your Head Straight";
+    cameraScreenCustomization.feedBackBlurFaceMessage = "Blur Detected Over Face";
+    cameraScreenCustomization.feedBackGlareFaceMessage = "Glare Detected";
+
+    // 0 for clean face and 100 for Blurry face or set it -1 to remove blur filter
+    cameraScreenCustomization.setBlurPercentage(80/*blurPercentage*/); // To allow blur on face
+                                                    
+    // Set min and max percentage for glare or set it -1 to remove glare filter
+	cameraScreenCustomization.setGlarePercentage(6/*glareMinPercentage*/, 99/*glareMaxPercentage*/);
+    
+    Intent intent = SelfieFMCameraActivity.getCustomIntent(this, cameraScreenCustomization);
+    startActivityForResult(intent, ACCURA_FACEMATCH_CAMERA);
+    
+    // Handle accura fm camera result.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == ACCURA_LIVENESS_CAMERA && data != null) {
+                AccuraFMCameraModel result = data.getParcelableExtra("Accura.fm");
+                if (result == null) {
+                    return;
+                }
+                if (result.getStatus().equals("1")) {
+                    // result bitmap
+                    Bitmap bitmap = result.getFaceBiometrics();
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Failed" + result.getStatus(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
